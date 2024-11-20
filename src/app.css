@@ -1,0 +1,73 @@
+@import "@fontsource-variable/libre-franklin";
+@import "@radix-ui/colors/gray.css";
+@import "@radix-ui/colors/gray-alpha.css";
+@import "@radix-ui/colors/gray-dark.css";
+@import "@radix-ui/colors/gray-dark-alpha.css";
+@import "@radix-ui/colors/blue.css";
+@import "@radix-ui/colors/blue-dark.css";
+@import "@radix-ui/colors/red.css";
+@import "@radix-ui/colors/red-dark.css";
+@import "@radix-ui/colors/green.css";
+@import "@radix-ui/colors/green-dark.css";
+@import "@radix-ui/colors/purple.css";
+@import "@radix-ui/colors/purple-dark.css";
+@import "@radix-ui/colors/orange.css";
+@import "@radix-ui/colors/orange-dark.css";
+@import "@radix-ui/colors/pink.css";
+@import "@radix-ui/colors/pink-dark.css";
+@import "@radix-ui/colors/amber.css";
+@import "@radix-ui/colors/amber-dark.css";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --gray-contrast: #fff;
+  --blue-contrast: #fff;
+  --red-contrast: #fff;
+  --orange-contrast: #fff;
+  --amber-contrast: #000;
+  --green-contrast: #fff;
+  --purple-contrast: #fff;
+  --pink-contrast: #fff;
+
+  --accent-1: var(--blue-1);
+  --accent-2: var(--blue-2);
+  --accent-3: var(--blue-3);
+  --accent-4: var(--blue-4);
+  --accent-5: var(--blue-5);
+  --accent-6: var(--blue-6);
+  --accent-7: var(--blue-7);
+  --accent-8: var(--blue-8);
+  --color-accent-9: var(--blue-9);
+  --accent-10: var(--blue-10);
+  --accent-11: var(--blue-11);
+  --accent-12: var(--blue-12);
+  --accent-contrast: var(--blue-contrast);
+
+  --color-fg: var(--gray-12);
+  --color-fg-secondary: var(--gray-11);
+  --color-bg: var(--gray-2);
+  --color-bg-tile: #fff;
+  --color-bg-secondary: var(--gray-a3);
+  --color-border: var(--gray-7);
+}
+
+.dark-theme {
+  --color-bg: #000;
+  --color-bg-tile: var(--gray-1);
+}
+
+* {
+  user-select: none;
+  user-drag: none;
+  app-region: no-drag;
+}
+
+body {
+  font-family: "Libre Franklin Variable", sans-serif;
+  color: var(--color-fg);
+  background-color: var(--color-bg);
+  color-scheme: dark light;
+}
