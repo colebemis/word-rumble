@@ -1,6 +1,6 @@
 <script lang="ts">
   import type { SvelteHTMLElements } from "svelte/elements";
-  import type { ColorName } from "./types";
+  import type { ColorName } from "../types";
 
   let { color, children, ...rest }: SvelteHTMLElements["div"] & { color: ColorName } = $props();
 </script>

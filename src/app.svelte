@@ -1,18 +1,18 @@
 <script lang="ts">
-  import Button from "./button.svelte";
-  import LetterTile from "./letter-title.svelte";
-  import AccentProvider from "./accent-provider.svelte";
-  import type { Board, ColorName, GameState, Player } from "./types";
+  import AccentProvider from "./components/accent-provider.svelte";
+  import Button from "./components/button.svelte";
+  import LetterTile from "./components/letter-title.svelte";
+  import PlayerInfo from "./components/player-info.svelte";
+  import type { GameState } from "./types";
   import {
-    calculateWordValue,
     calculatePlayerScore,
+    calculateWordValue,
     generateBoard,
-    getRandomPlayerColors,
-    WINNING_SCORE,
-    validateWord,
     getRandomEmoji,
+    getRandomPlayerColors,
+    validateWord,
+    WINNING_SCORE,
   } from "./utils";
-  import PlayerInfo from "./player-info.svelte";
 
   const LOCAL_STORAGE_KEY = "game_state";
 
@@ -101,6 +101,9 @@
 
     // Switch to next player
     gameState.currentPlayerIndex = gameState.currentPlayerIndex === 0 ? 1 : 0;
+
+    // Reset invalid submission state
+    isLastSubmissionInvalid = false;
   }
 
   function restartGame() {
@@ -240,7 +243,19 @@
 
     <footer class="p-4 text-center">
       <span class="text-fg-secondary group"
-        >Made with <span class="grayscale group-hover:grayscale-0">🩵</span> by Co&amp;Co</span
+        >Made with
+        <svg
+          class="inline-block align-middle -mt-1 group-hover:text-[var(--sky-11)] group-hover:scale-110 transition-all"
+          width="16"
+          height="16"
+          viewBox="0 0 16 16"
+          fill="currentColor"
+          aria-label="love"
+          role="img"
+          ><path
+            d="M8 3c1-1.5 3-2.8 5-2 5 2 1.5 8.5-5 14v.023c-6.5-5.5-10-12-5-14 2-.8 4 .5 5 2V3Z"
+          /></svg
+        > by Co&amp;Co</span
       >
     </footer>
   </div>

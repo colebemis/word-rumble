@@ -17,6 +17,8 @@
 @import "@radix-ui/colors/pink-dark.css";
 @import "@radix-ui/colors/amber.css";
 @import "@radix-ui/colors/amber-dark.css";
+@import "@radix-ui/colors/sky.css";
+@import "@radix-ui/colors/sky-dark.css";
 
 @tailwind base;
 @tailwind components;

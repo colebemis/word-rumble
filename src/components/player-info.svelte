@@ -1,8 +1,8 @@
 <script lang="ts">
   import { clsx } from "clsx";
-  import type { Player } from "./types";
+  import type { Player } from "../types";
   import AccentProvider from "./accent-provider.svelte";
-  import { calculatePlayerScore, calculateWordValue, WINNING_SCORE } from "./utils";
+  import { calculatePlayerScore, calculateWordValue, WINNING_SCORE } from "../utils";
 
   const {
     player,
@@ -15,7 +15,7 @@
 <AccentProvider color={player.color}>
   <div class={clsx("flex flex-col w-full", align === "end" && "items-end")}>
     <span class="text-xl font-semibold leading-none mb-3">{player.name}</span>
-    <span class="text-5xl font-light leading-none mb-3">
+    <div class="mb-3 flex items-center gap-2">
       {#if current && align === "end"}
         <svg
           width="16"
@@ -26,7 +26,7 @@
           <polygon points="16,8 0,0 0,16" fill="currentColor" />
         </svg>
       {/if}
-      {score}
+      <span class="text-5xl font-light leading-none">{score}</span>
       {#if current && align === "start"}
         <svg
           width="16"
@@ -37,7 +37,7 @@
           <polygon points="0,8 16,0 16,16" fill="currentColor" />
         </svg>
       {/if}
-    </span>
+    </div>
     <div class={clsx("w-full py-3 border-border", align === "end" ? "border-l" : "border-r")}>
       <div
         class={clsx("h-1 w-full bg-border flex overflow-hidden", align === "end" && "justify-end")}
@@ -50,7 +50,7 @@
       {#each player.moves.filter((move) => move.type === "submit-word") as move}
         <li class="text-xl leading-none">
           <span class="[user-select:auto]">{move.word}</span>
-          <sub class="font-medium">{calculateWordValue(move.word)}</sub>
+          <sub>{calculateWordValue(move.word)}</sub>
         </li>
       {/each}
     </ul>

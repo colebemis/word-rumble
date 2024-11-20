@@ -1,6 +1,6 @@
 <script lang="ts">
   import { clsx } from "clsx";
-  import { LETTER_VALUES } from "./utils";
+  import { LETTER_VALUES } from "../utils";
 
   let {
     letter,
@@ -19,7 +19,7 @@
 
 <button
   class={clsx(
-    "aspect-square border-2 rounded-lg [container-type:size] transition-transform active:scale-95 relative disabled:opacity-50 disabled:cursor-not-allowed border-b-4 ",
+    "aspect-square rounded-lg border-2 [container-type:size] transition-transform active:scale-95 relative disabled:opacity-50 disabled:cursor-not-allowed border-b-4 ",
     selected ? "border-accent-8 text-accent-12 bg-accent-3" : "border-border bg-bg-tile",
   )}
   {disabled}
