@@ -48,9 +48,19 @@
 
     <ul class={clsx("flex flex-col gap-4 mt-5 empty:hidden", align === "end" && "items-end")}>
       {#each player.moves.filter((move) => move.type === "submit-word") as move}
-        <li class="text-xl leading-none">
-          <span class="[user-select:auto]">{move.word}</span>
-          <sub>{calculateWordValue(move.word)}</sub>
+        <li>
+          <a
+            href={`https://en.wiktionary.org/wiki/${move.word.toLowerCase()}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-xl leading-none"
+          >
+            <span
+              class="[user-select:auto] underline underline-offset-4 decoration-fg-secondary decoration-2 decoration-dotted hover:decoration-solid"
+              >{move.word}</span
+            >
+            <sub>{calculateWordValue(move.word)}</sub>
+          </a>
         </li>
       {/each}
     </ul>
