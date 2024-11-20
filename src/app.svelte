@@ -1,4 +1,5 @@
 <script lang="ts">
+  import clsx from "clsx";
   import AccentProvider from "./components/accent-provider.svelte";
   import Button from "./components/button.svelte";
   import LetterTile from "./components/letter-title.svelte";
@@ -164,7 +165,7 @@
                 {gameState.players[winnerIndex].name} wins!&nbsp;&nbsp;{getRandomEmoji()}
               </span>
             {:else if currentWord}
-              <span>
+              <span class={clsx(isSubmitting && "opacity-50 transition-opacity")}>
                 <span class="text-4xl font-semibold [user-select:auto]">{currentWord}</span>
                 <sub class="text-base font-medium">{currentWordValue}</sub>
               </span>
