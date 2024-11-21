@@ -56,7 +56,7 @@
             class="text-xl leading-none group"
           >
             <span
-              class="[user-select:auto] underline underline-offset-4 decoration-fg-secondary decoration-2 decoration-dotted group-hover:decoration-solid group-hover:decoration-accent-11"
+              class="[user-select:auto] underline underline-offset-4 decoration-fg-secondary decoration-2 decoration-dotted group-hover:decoration-solid group-hover:decoration-accent-11 cursor-[inherit]"
               >{move.word}</span
             >
             <sub>{calculateWordValue(move.word)}</sub>

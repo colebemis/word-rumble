@@ -137,7 +137,7 @@
 <AccentProvider color={isGameOver ? gameState.players[winnerIndex].color : currentPlayer.color}>
   <div class="w-full min-h-[100svh] grid grid-rows-[auto_1fr]">
     <header class="flex items-center justify-between">
-      <span class="font-semibold px-4">Word Rumble</span>
+      <span class="font-semibold px-4 hover:animate-rumble will-change-transform">Word Rumble</span>
 
       <button
         aria-label="Restart Game"
@@ -166,7 +166,9 @@
               </span>
             {:else if currentWord}
               <span class={clsx(isSubmitting && "opacity-50 transition-opacity")}>
-                <span class="text-4xl font-semibold [user-select:auto]">{currentWord}</span>
+                <span class="text-4xl font-semibold [user-select:auto] cursor-text"
+                  >{currentWord}</span
+                >
                 <sub class="text-base font-medium">{currentWordValue}</sub>
               </span>
             {:else}
@@ -208,7 +210,6 @@
                 <LetterTile
                   {letter}
                   {selected}
-                  disabled={winnerIndex !== -1}
                   onclick={() => {
                     if (selected) {
                       gameState.selectedIndexes = gameState.selectedIndexes.slice(
@@ -246,7 +247,7 @@
       <span class="text-fg-secondary group"
         >Made with
         <svg
-          class="inline-block align-middle -mt-1 group-hover:text-[var(--sky-11)] group-hover:scale-110 transition-all"
+          class="inline-block align-middle -mt-1 text-[#88c9fa] will-change-transform group-hover:motion-safe:animate-heartbeat"
           width="16"
           height="16"
           viewBox="0 0 16 16"

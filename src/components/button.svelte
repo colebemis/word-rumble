@@ -12,7 +12,7 @@
 <button
   {...rest}
   class={clsx(
-    "font-semibold rounded-full p-4 disabled:opacity-50 disabled:cursor-not-allowed transition-transform active:not(:disabled):scale-95",
+    "font-semibold rounded-full p-4 disabled:opacity-50 disabled:cursor-not-allowed transition-transform [&:not(:disabled)]:active:scale-95",
     variant === "primary" && !rest.disabled
       ? "bg-accent-11 text-bg"
       : "ring-2 ring-inset ring-border",
