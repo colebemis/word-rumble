@@ -42,7 +42,7 @@
       <div
         class={clsx("h-1 w-full bg-border flex overflow-hidden", align === "end" && "justify-end")}
       >
-        <div class="h-full bg-accent-11" style:width={`${(score / WINNING_SCORE) * 100}%`}></div>
+        <div class={clsx("h-full bg-accent-11", align === "end" ? "rounded-r-full" : "rounded-l-full")} style:width={`${(score / WINNING_SCORE) * 100}%`}></div>
       </div>
     </div>
 
