@@ -132,7 +132,9 @@
 </svelte:head>
 
 <AccentProvider color={isGameOver ? gameState.players[winnerIndex].color : currentPlayer.color}>
-  <div class="w-full min-h-[100svh] grid grid-rows-[auto_1fr]">
+  <div
+    class="w-full min-h-[100svh] grid grid-rows-[auto_1fr] pb-[env(safe-area-inset-bottom)] pl-[env(safe-area-inset-left)] pr-[env(safe-area-inset-right)]"
+  >
     <header class="flex items-center justify-between">
       <span class="font-semibold px-4 hover:animate-rumble will-change-transform">Word Rumble</span>
 
