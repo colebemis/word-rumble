@@ -140,9 +140,18 @@
           }
         }}
       >
-        <svg class="text-fg-secondary" width="24" height="24" fill="currentColor"
-          ><path
-            d="M6.343 6.343A8 8 0 0 1 11.998 4a8.75 8.75 0 0 1 6.041 2.453l.547.547H15v2h7V2h-2v3.586l-.553-.553-.012-.012A10.75 10.75 0 0 0 12.004 2H12a10 10 0 0 0-9.75 7.778l-.222.975 1.95.444.222-.975a8 8 0 0 1 2.143-3.879ZM21.972 13.247l-.222.975A10.001 10.001 0 0 1 12 22h-.004a10.75 10.75 0 0 1-7.431-3.021l-.012-.012L4 18.414V22H2v-7h7v2H5.414l.547.547A8.75 8.75 0 0 0 12.001 20a8 8 0 0 0 7.799-6.222l.222-.975 1.95.444Z"
+        <svg
+          class="text-fg-secondary"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          ><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8" /><path
+            d="M21 3v5h-5"
           /></svg
         >
       </button>

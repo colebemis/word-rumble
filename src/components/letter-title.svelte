@@ -17,7 +17,8 @@
 
 <button
   class={clsx(
-    "aspect-square rounded-lg border-2 [container-type:size] transition-all will-change-transform active:scale-95 relative border-b-4",
+    "aspect-square rounded-lg border-2 [container-type:size] transition-[transform,color,background-color] will-change-transform active:scale-95 relative border-b-4",
+    "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-11",
     selected
       ? "border-accent-8 text-accent-12 bg-accent-3 hover:bg-accent-4 active:bg-accent-5"
       : "border-border bg-bg-tile hover:bg-neutral-3 active:bg-neutral-4",

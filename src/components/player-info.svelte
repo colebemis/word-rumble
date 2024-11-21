@@ -40,7 +40,10 @@
     </div>
     <div class={clsx("w-full py-3 border-border", align === "end" ? "border-l" : "border-r")}>
       <div
-        class={clsx("h-1.5 w-full bg-border flex overflow-hidden", align === "end" ? "justify-end rounded-r-full" : "rounded-l-full")}
+        class={clsx(
+          "h-1.5 w-full bg-border flex overflow-hidden",
+          align === "end" ? "justify-end rounded-r-full" : "rounded-l-full",
+        )}
       >
         <div class="h-full bg-accent-11" style:width={`${(score / WINNING_SCORE) * 100}%`}></div>
       </div>
@@ -53,7 +56,7 @@
             href={`https://en.wiktionary.org/wiki/${move.word.toLowerCase()}`}
             target="_blank"
             rel="noopener noreferrer"
-            class="text-xl leading-none group"
+            class="text-xl leading-none group focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-11 rounded"
           >
             <span
               class="[user-select:auto] underline underline-offset-4 decoration-fg-secondary decoration-2 decoration-dotted group-hover:decoration-solid group-hover:decoration-accent-11 cursor-[inherit]"
