@@ -40,7 +40,7 @@
     </div>
     <div class={clsx("w-full py-3 border-border", align === "end" ? "border-l" : "border-r")}>
       <div
-        class={clsx("h-1 w-full bg-border flex overflow-hidden", align === "end" && "justify-end")}
+        class={clsx("h-1.5 w-full bg-border flex overflow-hidden", align === "end" ? "justify-end rounded-r-full" : "rounded-l-full")}
       >
         <div class="h-full bg-accent-11" style:width={`${(score / WINNING_SCORE) * 100}%`}></div>
       </div>
