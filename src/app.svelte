@@ -128,7 +128,7 @@
 </script>
 
 <svelte:head>
-  <meta name="theme-color" content={darkMode ? "#000000" : "#ffffff"} />
+  <meta name="theme-color" content={darkMode ? "#000000" : "#f9f9f9"} />
 </svelte:head>
 
 <AccentProvider color={isGameOver ? gameState.players[winnerIndex].color : currentPlayer.color}>
