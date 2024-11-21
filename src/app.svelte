@@ -222,7 +222,7 @@
                   }}
                 />
               {:else}
-                <div class="aspect-square bg-bg-secondary rounded-lg"></div>
+                <div class="aspect-square rounded-lg"></div>
               {/if}
             {/each}
           </div>
