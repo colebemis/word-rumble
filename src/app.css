@@ -67,6 +67,10 @@
   app-region: no-drag;
 }
 
+html {
+  scrollbar-gutter: stable;
+}
+
 body {
   font-family: "Libre Franklin Variable", sans-serif;
   color: var(--color-fg);
