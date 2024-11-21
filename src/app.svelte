@@ -137,7 +137,7 @@
 <AccentProvider color={isGameOver ? gameState.players[winnerIndex].color : currentPlayer.color}>
   <div class="w-full min-h-[100svh] grid grid-rows-[auto_1fr]">
     <header class="flex items-center justify-between">
-      <span class="text-lg font-semibold px-4 hover:animate-rumble will-change-transform">Word Rumble</span>
+      <span class="font-semibold px-4 hover:animate-rumble will-change-transform">Word Rumble</span>
 
       <button
         aria-label="Restart Game"
