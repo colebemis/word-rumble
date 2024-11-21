@@ -108,15 +108,12 @@
     localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(gameState));
   });
 
-  // Update theme based on system preferences
+  let darkMode = $state(window.matchMedia("(prefers-color-scheme: dark)").matches);
+
   $effect(() => {
     const darkModeQuery = window.matchMedia("(prefers-color-scheme: dark)");
     const updateTheme = (e: MediaQueryListEvent | MediaQueryList) => {
-      if (e.matches) {
-        document.documentElement.classList.add("dark-theme");
-      } else {
-        document.documentElement.classList.remove("dark-theme");
-      }
+      darkMode = e.matches;
     };
 
     darkModeQuery.addEventListener("change", updateTheme);
@@ -124,7 +121,15 @@
 
     return () => darkModeQuery.removeEventListener("change", updateTheme);
   });
+
+  $effect(() => {
+    document.documentElement.classList.toggle("dark-theme", darkMode);
+  });
 </script>
+
+<svelte:head>
+  <meta name="theme-color" content={darkMode ? "#000000" : "#ffffff"} />
+</svelte:head>
 
 <AccentProvider color={isGameOver ? gameState.players[winnerIndex].color : currentPlayer.color}>
   <div class="w-full min-h-[100svh] grid grid-rows-[auto_1fr]">
