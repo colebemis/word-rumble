@@ -53,10 +53,10 @@
             href={`https://en.wiktionary.org/wiki/${move.word.toLowerCase()}`}
             target="_blank"
             rel="noopener noreferrer"
-            class="text-xl leading-none"
+            class="text-xl leading-none group"
           >
             <span
-              class="[user-select:auto] underline underline-offset-4 decoration-fg-secondary decoration-2 decoration-dotted hover:decoration-solid"
+              class="[user-select:auto] underline underline-offset-4 decoration-fg-secondary decoration-2 decoration-dotted group-hover:decoration-solid group-hover:decoration-accent-11"
               >{move.word}</span
             >
             <sub>{calculateWordValue(move.word)}</sub>
