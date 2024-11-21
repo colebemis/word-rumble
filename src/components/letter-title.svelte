@@ -20,7 +20,7 @@
     "aspect-square rounded-lg border-2 [container-type:size] transition-all will-change-transform active:scale-95 relative border-b-4",
     selected
       ? "border-accent-8 text-accent-12 bg-accent-3 hover:bg-accent-4 active:bg-accent-5"
-      : "border-border bg-bg-tile hover:border-accent-6 hover:bg-accent-2 active:bg-accent-3 hover:text-accent-11",
+      : "border-border bg-bg-tile hover:bg-neutral-3 active:bg-neutral-4",
   )}
   {onclick}
 >

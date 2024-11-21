@@ -46,17 +46,31 @@
   --accent-12: var(--blue-12);
   --accent-contrast: var(--blue-contrast);
 
-  --color-fg: var(--gray-12);
-  --color-fg-secondary: var(--gray-11);
-  --color-bg: var(--gray-2);
+  --neutral-1: var(--gray-1);
+  --neutral-2: var(--gray-2);
+  --neutral-3: var(--gray-3);
+  --neutral-4: var(--gray-4);
+  --neutral-5: var(--gray-5);
+  --neutral-6: var(--gray-6);
+  --neutral-7: var(--gray-7);
+  --neutral-8: var(--gray-8);
+  --neutral-9: var(--gray-9);
+  --neutral-10: var(--gray-10);
+  --neutral-11: var(--gray-11);
+  --neutral-12: var(--gray-12);
+  --neutral-contrast: var(--gray-contrast);
+
+  --color-fg: var(--neutral-12);
+  --color-fg-secondary: var(--neutral-11);
+  --color-bg: var(--neutral-2);
   --color-bg-tile: #fff;
-  --color-bg-secondary: var(--gray-a3);
-  --color-border: var(--gray-7);
+  --color-bg-secondary: var(--neutral-a3);
+  --color-border: var(--neutral-7);
 }
 
 .dark-theme {
   --color-bg: #000;
-  --color-bg-tile: var(--gray-1);
+  --color-bg-tile: var(--neutral-1);
 }
 
 * {
