@@ -184,7 +184,7 @@
                 {#if isLastSubmissionInvalid}
                   That&rsquo;s not a word. Try again.
                 {:else}
-                  {currentPlayer.name}, it&rsquo;s your turn!
+                  <span class="text-accent-11">{currentPlayer.name}</span>, it&rsquo;s your turn!
                 {/if}
               </span>
             {/if}
