@@ -16,6 +16,10 @@
 </script>
 
 <button
+  ontouchstart={() => {
+    // This is a hack to get iOS Safari to respect the active state
+    // https://stackoverflow.com/questions/3885018/active-pseudo-class-doesnt-work-in-mobile-safari
+  }}
   class={clsx(
     "aspect-square rounded-lg border-2 [container-type:size] transition-[transform,color,background-color] will-change-transform active:scale-95 relative border-b-4",
     "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-11",
