@@ -247,7 +247,7 @@
       <span class="text-fg-secondary group"
         >Made with
         <svg
-          class="inline-block align-middle -mt-1 text-[#88c9fa] will-change-transform group-hover:motion-safe:animate-heartbeat"
+          class="inline-block align-middle -mt-1 text-[var(--blue-9)] will-change-transform group-hover:motion-safe:animate-heartbeat"
           width="16"
           height="16"
           viewBox="0 0 16 16"
