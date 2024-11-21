@@ -44,10 +44,7 @@
   }
 
   let gameState = $state(getSavedGameState() ?? getInitialGameState());
-
-  // UI state
   let isLastSubmissionInvalid = $state(false);
-  let isSubmitting = $state(false);
 
   // Derived values
   const currentPlayer = $derived(gameState.players[gameState.currentPlayerIndex]);
@@ -59,14 +56,11 @@
   const isGameOver = $derived(winnerIndex !== -1);
 
   async function submitWord() {
-    isSubmitting = true;
-
-    const isValidWord = await validateWord(currentWord);
+    const isValidWord = validateWord(currentWord);
     isLastSubmissionInvalid = !isValidWord;
 
     if (!isValidWord) {
       gameState.selectedIndexes = [];
-      isSubmitting = false;
       return;
     }
 
@@ -84,8 +78,6 @@
 
     // Switch to next player
     gameState.currentPlayerIndex = gameState.currentPlayerIndex === 0 ? 1 : 0;
-
-    isSubmitting = false;
   }
 
   function newBoard() {
@@ -165,7 +157,7 @@
                 {gameState.players[winnerIndex].name} wins!&nbsp;&nbsp;{getRandomEmoji()}
               </span>
             {:else if currentWord}
-              <span class={clsx(isSubmitting && "opacity-50 transition-opacity")}>
+              <span>
                 <span class="text-4xl font-semibold [user-select:auto] cursor-text"
                   >{currentWord}</span
                 >
@@ -186,16 +178,8 @@
             <Button variant="primary" onclick={restartGame}>Play Again</Button>
           {:else}
             <div class="grid grid-cols-2 gap-2 sm:gap-3">
-              <Button
-                variant="primary"
-                disabled={currentWord.length < 4 || isSubmitting}
-                onclick={submitWord}
-              >
-                {#if isSubmitting}
-                  Checking...
-                {:else}
-                  Submit Word
-                {/if}
+              <Button variant="primary" disabled={currentWord.length < 4} onclick={submitWord}>
+                Submit Word
               </Button>
               <Button onclick={newBoard}>New Board</Button>
             </div>

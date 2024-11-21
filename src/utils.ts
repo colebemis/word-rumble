@@ -1,4 +1,5 @@
 import type { Board, ColorName, GameMove } from "./types";
+import words from "./words.txt?raw";
 
 const VOWELS = "AEIOU";
 const CONSONANTS = "BCDFGHJKLMNPQRSTVWXYZ";
@@ -99,13 +100,8 @@ export function getRandomPlayerColors(): [ColorName, ColorName] {
   return [firstColor, secondColor];
 }
 
-export async function validateWord(word: string): Promise<boolean> {
-  try {
-    const response = await fetch(
-      `https://api.dictionaryapi.dev/api/v2/entries/en/${word.toLowerCase()}`,
-    );
-    return response.ok;
-  } catch (error) {
-    return false;
-  }
+const validWords = new Set(words.split("\n").map((word) => word.trim().toLowerCase()));
+
+export function validateWord(word: string): boolean {
+  return validWords.has(word.toLowerCase());
 }
