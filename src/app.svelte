@@ -45,6 +45,7 @@
 
   let gameState = $state(getSavedGameState() ?? getInitialGameState());
   let isLastSubmissionInvalid = $state(false);
+  let dialog: HTMLDialogElement;
 
   // Derived values
   const currentPlayer = $derived(gameState.players[gameState.currentPlayerIndex]);
@@ -132,36 +133,123 @@
 </svelte:head>
 
 <AccentProvider color={isGameOver ? gameState.players[winnerIndex].color : currentPlayer.color}>
+  <dialog
+    bind:this={dialog}
+    class="p-6 bg-bg-tile rounded-xl relative outline-none border-2 border-b-4 border-border w-[90vw] max-h-[90vh] max-w-xl backdrop:bg-[#ffffff88] dark:backdrop:bg-[#00000088] backdrop:backdrop-blur overflow-auto"
+    aria-labelledby="how-to-play"
+  >
+    <button
+      aria-label="Close dialog"
+      class="p-4 rounded-full -outline-offset-8 focus-visible:outline-2 focus-visible:outline-accent-11 absolute top-2 right-2"
+      onclick={() => {
+        dialog.close();
+      }}
+    >
+      <svg
+        aria-hidden="true"
+        class="text-fg-secondary"
+        width="24"
+        height="24"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        ><path d="M18 6 6 18" /><path d="m6 6 12 12" />
+      </svg>
+    </button>
+    <h2 id="how-to-play" class="text-xl font-semibold mb-4">How to Play</h2>
+    <div class="space-y-4">
+      <div class="space-y-2">
+        <h3 class="font-semibold">Goal</h3>
+        <p>Be the first player to reach 50 points.</p>
+      </div>
+      <div class="space-y-2">
+        <h3 class="font-semibold">Scoring</h3>
+        <p>
+          Create words using letters from the board. Each letter has a point value shown in its
+          corner. Your word's score is the sum of its letters.
+        </p>
+      </div>
+      <div class="space-y-2">
+        <h3 class="font-semibold">Choosing letters</h3>
+        <p>
+          You can use any letters on the board—they don't need to be adjacent. Letters are removed
+          from the board after being used in a word.
+        </p>
+      </div>
+      <div class="space-y-2">
+        <h3 class="font-semibold">Can't make a word?</h3>
+        <p>You can click "New Board" to refresh the letters, but this will end your turn.</p>
+      </div>
+      <div class="space-y-2">
+        <h3 class="font-semibold">Rules</h3>
+        <p>Words must be at least 4 letters long.</p>
+      </div>
+    </div>
+  </dialog>
   <div
     class="w-full min-h-[100svh] grid grid-rows-[auto_1fr] pb-[env(safe-area-inset-bottom)] pl-[env(safe-area-inset-left)] pr-[env(safe-area-inset-right)]"
   >
     <header class="flex items-center justify-between">
       <span class="font-semibold px-4 hover:animate-rumble will-change-transform">Word Rumble</span>
 
-      <button
-        aria-label="Restart Game"
-        class="p-4"
-        onclick={() => {
-          if (confirm("Are you sure you want to restart the game?")) {
-            restartGame();
-          }
-        }}
-      >
-        <svg
-          class="text-fg-secondary"
-          width="24"
-          height="24"
-          viewBox="0 0 24 24"
-          fill="none"
-          stroke="currentColor"
-          stroke-width="2"
-          stroke-linecap="round"
-          stroke-linejoin="round"
-          ><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8" /><path
-            d="M21 3v5h-5"
-          /></svg
+      <div>
+        <button
+          aria-label="How to play"
+          class="p-4 rounded-full -outline-offset-8 focus-visible:outline-2 focus-visible:outline-accent-11"
+          onclick={() => {
+            dialog.showModal();
+          }}
         >
-      </button>
+          <svg
+            aria-hidden="true"
+            class="text-fg-secondary"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          >
+            <path
+              d="M12 22C17.5228 22 22 17.5228 22 12C22 6.47715 17.5228 2 12 2C6.47715 2 2 6.47715 2 12C2 17.5228 6.47715 22 12 22Z"
+            />
+            <path
+              d="M9.09 8.50001C9.3251 7.83167 9.78915 7.26811 10.4 6.90914C11.0108 6.55016 11.7289 6.41894 12.4272 6.53872C13.1255 6.65849 13.7588 7.02153 14.2151 7.56353C14.6713 8.10554 14.8973 8.79189 14.92 9.50001C14.984 11.5 12.4272 12 12 13.5"
+            />
+            <path d="M12 17H12.01" />
+          </svg>
+        </button>
+        <button
+          aria-label="Restart game"
+          class="p-4 rounded-full -outline-offset-8 focus-visible:outline-2 focus-visible:outline-accent-11"
+          onclick={() => {
+            if (confirm("Are you sure you want to restart the game?")) {
+              restartGame();
+            }
+          }}
+        >
+          <svg
+            aria-hidden="true"
+            class="text-fg-secondary"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            ><path d="M21 12a9 9 0 1 1-9-9c2.52 0 4.93 1 6.74 2.74L21 8" /><path
+              d="M21 3v5h-5"
+            /></svg
+          >
+        </button>
+      </div>
     </header>
 
     <div class="flex flex-col items-center">
@@ -262,3 +350,33 @@
     </footer>
   </div>
 </AccentProvider>
+
+<style>
+  dialog[open] {
+    animation: scale-in 150ms ease-out;
+  }
+
+  dialog[open]::backdrop {
+    animation: fade-in 150ms ease-out;
+  }
+
+  @keyframes scale-in {
+    from {
+      opacity: 0;
+      transform: scale(0.95);
+    }
+    to {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+</style>

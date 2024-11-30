@@ -17,7 +17,7 @@
   {...rest}
   class={clsx(
     "font-semibold rounded-full p-4 disabled:opacity-50 disabled:cursor-not-allowed transition-transform [&:not(:disabled)]:active:scale-95",
-    "focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-accent-11",
+    "focus-visible:outline-2 focus-visible:outline-offset-[2px]  focus-visible:outline-accent-11",
     variant === "primary" && !rest.disabled
       ? "bg-accent-11 text-bg"
       : "ring-2 ring-inset ring-border",
