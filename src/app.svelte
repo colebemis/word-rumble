@@ -197,6 +197,7 @@
         <h3 class="font-semibold">Rules</h3>
         <p>Words must be at least 4 letters long.</p>
       </div>
+      <p class="italic text-fg-secondary">...are you ready to rumble?</p>
     </div>
   </dialog>
   <div
