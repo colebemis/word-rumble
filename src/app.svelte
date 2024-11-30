@@ -12,6 +12,7 @@
     getRandomEmoji,
     getRandomPlayerColors,
     validateWord,
+    getSuccessMessage,
     WINNING_SCORE,
   } from "./utils";
 
@@ -45,6 +46,8 @@
 
   let gameState = $state(getSavedGameState() ?? getInitialGameState());
   let isLastSubmissionInvalid = $state(false);
+  let showSuccessMessage = $state(false);
+  let currentSuccessMessage = $state("");
   let dialog: HTMLDialogElement;
 
   // Derived values
@@ -64,6 +67,13 @@
       gameState.selectedIndexes = [];
       return;
     }
+
+    // Show success message
+    currentSuccessMessage = getSuccessMessage(currentWordValue);
+    showSuccessMessage = true;
+    setTimeout(() => {
+      showSuccessMessage = false;
+    }, 1500);
 
     // Save move
     gameState.players[gameState.currentPlayerIndex].moves.push({
@@ -269,7 +279,9 @@
               </span>
             {:else}
               <span class="text-2xl font-semibold">
-                {#if isLastSubmissionInvalid}
+                {#if showSuccessMessage}
+                  {currentSuccessMessage}
+                {:else if isLastSubmissionInvalid}
                   That&rsquo;s not a word. Try again.
                 {:else}
                   <span class="text-accent-11">{currentPlayer.name}</span>, it&rsquo;s your turn!

@@ -105,3 +105,61 @@ const validWords = new Set(words.split("\n").map((word) => word.trim().toLowerCa
 export function validateWord(word: string): boolean {
   return validWords.has(word.toLowerCase());
 }
+
+const SUCCESS_MESSAGES = {
+  small: [
+    // 4-7 points
+    "A word is a word, right?",
+    "At least it’s not zero!",
+    "Small but mighty!",
+    "It’s a start. Keep going!",
+    "Low score, high potential!",
+    "Rome wasn’t built in a day.",
+    "Points are points... I guess.",
+    "That word needs a growth spurt!",
+  ],
+  medium: [
+    // 8-12 points
+    "Now we’re cookin’!",
+    "You’re making moves!",
+    "Solid!",
+    "Every letter counts!",
+    "Climbing that word ladder!",
+  ],
+  large: [
+    // 13-17 points
+    "Bravo, wordsmith!",
+    "Your brain is on fire! 🔥",
+    "That’s a word for the books!",
+    "Vocabulary flex! 💪",
+    "You’re a word wizard, Harry! 🧙‍♂️",
+    "One step closer to Linda status!",
+    "Linda would approve!",
+  ],
+  huge: [
+    // 18+ points
+    "Linguistic legend! 👑",
+    "Dropping knowledge bombs! 💣",
+    "A+ in wordology! 💯",
+    "Mic drop! 🎤",
+    "Channeling your inner Linda?",
+  ],
+} as const;
+
+export function getSuccessMessage(score: number): string {
+  const getRandomMessage = (category: keyof typeof SUCCESS_MESSAGES) => {
+    const messages = SUCCESS_MESSAGES[category];
+    return messages[Math.floor(Math.random() * messages.length)];
+  };
+
+  if (score >= 18) {
+    return getRandomMessage("huge");
+  }
+  if (score >= 13) {
+    return getRandomMessage("large");
+  }
+  if (score >= 8) {
+    return getRandomMessage("medium");
+  }
+  return getRandomMessage("small");
+}
