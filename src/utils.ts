@@ -1,12 +1,15 @@
 import type { Board, ColorName, GameMove } from "./types";
 import words from "./words.txt?raw";
 
+export const IS_HOLIDAY_SEASON = true;
+
 const VOWELS = "AEIOU";
 const CONSONANTS = "BCDFGHJKLMNPQRSTVWXYZ";
 const VOWEL_RATIO = 0.4;
 const GRID_SIZE = 5;
 const COLORS: ColorName[] = ["red", "orange", "amber", "green", "blue", "purple", "pink"];
-const EMOJI = [
+
+const REGULAR_EMOJI = [
   "🎉",
   "🎊",
   "🏆",
@@ -22,7 +25,26 @@ const EMOJI = [
   "🏅",
   "🎈",
   "🍾",
-];
+] as const;
+
+const HOLIDAY_EMOJI = [
+  "🎄",
+  "🎅",
+  "🦌",
+  "⛄",
+  "❄️",
+  "✨",
+  "🎁",
+  "🔔",
+  "🌟",
+  "🧝",
+  "🛷",
+  "🍪",
+  "☃️",
+] as const;
+
+const EMOJI = IS_HOLIDAY_SEASON ? HOLIDAY_EMOJI : REGULAR_EMOJI;
+
 export const WINNING_SCORE = 50;
 export const LETTER_VALUES: Record<string, number> = {
   A: 1,
@@ -52,6 +74,18 @@ export const LETTER_VALUES: Record<string, number> = {
   Y: 4,
   Z: 10,
 };
+
+const REINDEER_NAMES = [
+  "Dasher",
+  "Dancer",
+  "Prancer",
+  "Vixen",
+  "Comet",
+  "Cupid",
+  "Donner",
+  "Blitzen",
+  "Rudolph",
+] as const;
 
 export function generateBoard(): Board {
   const board = new Array(GRID_SIZE * GRID_SIZE);
@@ -92,6 +126,12 @@ export function calculatePlayerScore(moves: GameMove[]) {
 }
 
 export function getRandomPlayerColors(): [ColorName, ColorName] {
+  if (IS_HOLIDAY_SEASON) {
+    // During holiday season, always return red and green in random order
+    return Math.random() < 0.5 ? ["red", "green"] : ["green", "red"];
+  }
+
+  // Regular color selection logic for non-holiday season
   const colors = [...COLORS];
   const firstIndex = Math.floor(Math.random() * colors.length);
   const firstColor = colors[firstIndex];
@@ -106,22 +146,22 @@ export function validateWord(word: string): boolean {
   return validWords.has(word.toLowerCase());
 }
 
-const SUCCESS_MESSAGES = {
+const REGULAR_SUCCESS_MESSAGES = {
   small: [
     // 4-7 points
     "A word is a word, right?",
-    "At least it’s not zero!",
+    "At least it's not zero!",
     "Small but mighty!",
-    "It’s a start. Keep going!",
+    "It's a start. Keep going!",
     "Low score, high potential!",
-    "Rome wasn’t built in a day.",
+    "Rome wasn't built in a day.",
     "Points are points... I guess.",
     "That word needs a growth spurt!",
   ],
   medium: [
     // 8-12 points
-    "Now we’re cookin’!",
-    "You’re making moves!",
+    "Now we're cookin'!",
+    "You're making moves!",
     "Solid!",
     "Every letter counts!",
     "Climbing that word ladder!",
@@ -130,9 +170,9 @@ const SUCCESS_MESSAGES = {
     // 13-17 points
     "Bravo, wordsmith!",
     "Your brain is on fire! 🔥",
-    "That’s a word for the books!",
+    "That's a word for the books!",
     "Vocabulary flex! 💪",
-    "You’re a word wizard, Harry! 🧙‍♂️",
+    "You're a word wizard, Harry! 🧙‍♂️",
     "One step closer to Linda status!",
     "Linda would approve!",
   ],
@@ -145,6 +185,43 @@ const SUCCESS_MESSAGES = {
     "Channeling your inner Linda?",
   ],
 } as const;
+
+const HOLIDAY_SUCCESS_MESSAGES = {
+  small: [
+    // 4-7 points
+    "As cute as an elf! 🧝",
+    "Like a tiny jingle bell! 🔔",
+    "Every snowflake counts! ❄️",
+    "Sweet as a sugar cookie! 🍪",
+    "Warming up like hot cocoa! ☕",
+  ],
+  medium: [
+    // 8-12 points
+    "Dashing through the words! 🛷",
+    "Merry and bright! ✨",
+    "Ho ho ho! 🎅",
+    "Festive and fabulous! 🎄",
+    "Jingling all the way! 🔔",
+  ],
+  large: [
+    // 13-17 points
+    "Christmas magic in action! ✨",
+    "Santa would be proud! 🎅",
+    "Spreading holiday cheer! 🎄",
+    "Like finding a present under the tree! 🎁",
+    "Rudolph is giving you a high-five! 🦌",
+  ],
+  huge: [
+    // 18+ points
+    "Christmas miracle! 🌟",
+    "You're the star on top of the tree! ⭐",
+    "Santa's putting you on the Nice List! 📜",
+    "Making the North Pole proud! 🎅",
+    "Magical as Christmas Eve! 🎄",
+  ],
+} as const;
+
+const SUCCESS_MESSAGES = IS_HOLIDAY_SEASON ? HOLIDAY_SUCCESS_MESSAGES : REGULAR_SUCCESS_MESSAGES;
 
 export function getSuccessMessage(score: number): string {
   const getRandomMessage = (category: keyof typeof SUCCESS_MESSAGES) => {
@@ -162,4 +239,13 @@ export function getSuccessMessage(score: number): string {
     return getRandomMessage("medium");
   }
   return getRandomMessage("small");
+}
+
+export function getRandomReindeerNames(): [string, string] {
+  const names = [...REINDEER_NAMES];
+  const firstIndex = Math.floor(Math.random() * names.length);
+  const firstName = names[firstIndex];
+  names.splice(firstIndex, 1);
+  const secondName = names[Math.floor(Math.random() * names.length)];
+  return [firstName, secondName];
 }

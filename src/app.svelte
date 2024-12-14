@@ -14,6 +14,8 @@
     validateWord,
     getSuccessMessage,
     WINNING_SCORE,
+    IS_HOLIDAY_SEASON,
+    getRandomReindeerNames,
   } from "./utils";
 
   const LOCAL_STORAGE_KEY = "game_state";
@@ -25,18 +27,19 @@
 
   function getInitialGameState(): GameState {
     const randomPlayerColors = getRandomPlayerColors();
+    const playerNames = IS_HOLIDAY_SEASON ? getRandomReindeerNames() : ["Player 1", "Player 2"];
     return {
       board: generateBoard(),
       selectedIndexes: [],
       currentPlayerIndex: 0,
       players: [
         {
-          name: "Player 1",
+          name: playerNames[0],
           color: randomPlayerColors[0],
           moves: [],
         },
         {
-          name: "Player 2",
+          name: playerNames[1],
           color: randomPlayerColors[1],
           moves: [],
         },
@@ -141,6 +144,19 @@
 <svelte:head>
   <meta name="theme-color" content={darkMode ? "#000000" : "#f9f9f9"} />
 </svelte:head>
+
+{#if IS_HOLIDAY_SEASON}
+  <div class="snowfall">
+    {#each Array(30) as _, i}
+      <div
+        class="snowflake"
+        style:animation-delay="{Math.random() * 5}s"
+        style:left="{Math.random() * 100}%"
+        style:opacity={0.2 + Math.random() * 0.5}
+      ></div>
+    {/each}
+  </div>
+{/if}
 
 <AccentProvider color={isGameOver ? gameState.players[winnerIndex].color : currentPlayer.color}>
   <dialog
@@ -391,5 +407,65 @@
     to {
       opacity: 1;
     }
+  }
+
+  .snowfall {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1000;
+  }
+
+  .snowflake {
+    position: fixed;
+    top: -10px;
+    width: 10px;
+    height: 10px;
+    background: #e5e5e5;
+    border-radius: 50%;
+    filter: blur(1px);
+    box-shadow: 0 0 2px rgba(0, 0, 0, 0.2);
+    animation: snowfall linear infinite;
+  }
+
+  @keyframes snowfall {
+    0% {
+      transform: translateY(-10px) rotate(0deg);
+    }
+    100% {
+      transform: translateY(100vh) rotate(720deg);
+    }
+  }
+
+  .snowflake {
+    animation-duration: 10s;
+  }
+
+  /* Make every third snowflake fall slower */
+  .snowflake:nth-child(3n) {
+    width: 8px;
+    height: 8px;
+    animation-duration: 15s;
+    filter: blur(0.5px);
+    background: #d5d5d5;
+  }
+
+  /* Make every fourth snowflake fall faster */
+  .snowflake:nth-child(4n) {
+    width: 6px;
+    height: 6px;
+    animation-duration: 8s;
+    filter: blur(0.5px);
+    background: #c5c5c5;
+  }
+
+  /* Adjust snowflake appearance for dark mode */
+  :global(.dark-theme) .snowflake {
+    opacity: 0.5;
+    background: white;
+    box-shadow: 0 0 3px rgba(255, 255, 255, 0.5);
   }
 </style>
