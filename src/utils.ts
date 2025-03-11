@@ -1,7 +1,18 @@
 import type { Board, ColorName, GameMove } from "./types";
 import words from "./words.txt?raw";
 
-export const IS_HOLIDAY_SEASON = true;
+export const IS_HOLIDAY_SEASON = (() => {
+  const now = new Date();
+  const month = now.getMonth();
+  const day = now.getDate();
+
+  // Holiday season: November 15 to January 15
+  return (
+    (month === 10 && day >= 15) || // November
+    month === 11 || // December
+    (month === 0 && day <= 15) // January
+  );
+})();
 
 const VOWELS = "AEIOU";
 const CONSONANTS = "BCDFGHJKLMNPQRSTVWXYZ";
@@ -149,40 +160,40 @@ export function validateWord(word: string): boolean {
 const REGULAR_SUCCESS_MESSAGES = {
   small: [
     // 4-7 points
-    "A word is a word, right?",
-    "At least it's not zero!",
-    "Small but mighty!",
-    "It's a start. Keep going!",
-    "Low score, high potential!",
-    "Rome wasn't built in a day.",
-    "Points are points... I guess.",
-    "That word needs a growth spurt!",
+    "A word is a word, right? 🤷‍♂️",
+    "At least it's not zero! 👌",
+    "Small but mighty! 🐜💪",
+    "It's a start. Keep going! 🚶‍♂️",
+    "Low score, high potential! 📈",
+    "Rome wasn't built in a day. 🏛️",
+    "Points are points... I guess. 🤔",
+    "That word needs a growth spurt! 🌱",
   ],
   medium: [
     // 8-12 points
-    "Now we're cookin'!",
-    "You're making moves!",
-    "Solid!",
-    "Every letter counts!",
-    "Climbing that word ladder!",
+    "Now we're cookin'! 🍳",
+    "You're making moves! 🏃‍♂️",
+    "Solid! 👍",
+    "Every letter counts! 🔤",
+    "Climbing that word ladder! 🪜",
   ],
   large: [
     // 13-17 points
-    "Bravo, wordsmith!",
-    "Your brain is on fire! 🔥",
-    "That's a word for the books!",
-    "Vocabulary flex! 💪",
-    "You're a word wizard, Harry! 🧙‍♂️",
-    "One step closer to Linda status!",
-    "Linda would approve!",
+    "Bravo, wordsmith! 👏",
+    "Your brain is on fire! 🧠🔥",
+    "That's a word for the books! 📚",
+    "Vocabulary flex! 💪✨",
+    "You're a word wizard, Harry! 🧙‍♂️✨",
+    "One step closer to Linda status! 🌟",
+    "Linda would approve! 🤩👌",
   ],
   huge: [
     // 18+ points
-    "Linguistic legend! 👑",
-    "Dropping knowledge bombs! 💣",
-    "A+ in wordology! 💯",
-    "Mic drop! 🎤",
-    "Channeling your inner Linda?",
+    "Linguistic legend! 👑🏆",
+    "Dropping knowledge bombs! 💣💥",
+    "A+ in wordology! 💯🎓",
+    "Mic drop! 🎤💨",
+    "Channeling your inner Linda? 🌠🧠",
   ],
 } as const;
 
