@@ -93,3 +93,7 @@ body {
 span {
   cursor: default;
 }
+
+.test-comment {
+  /* Test comment */
+}
